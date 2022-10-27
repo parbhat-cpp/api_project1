@@ -1,0 +1,28 @@
+for(let i=0;i<20;i++){
+  let f = fetch('https://api.catboys.com/img')
+  f.then((r)=>{
+    return r.json()
+  }).then((v)=>{
+    let card = document.createElement('div')
+    card.setAttribute('class','card')
+    card.setAttribute('style','width: 18rem; margin: 0 auto;')
+    let image = document.createElement('img')
+    image.setAttribute('src',`${v['url']}`)
+    let cardBody = document.createElement('div')
+    cardBody.setAttribute('class','card-body')
+    let cardTitle = document.createElement('h5')
+    cardTitle.setAttribute('class','card-title')
+    let CardTitle = document.createTextNode(`${v['artist']}`)
+    cardTitle.appendChild(CardTitle)
+    let a = document.createElement('a')
+    a.setAttribute('href',`${v['source_url']}`)
+    a.setAttribute('class','btn btn-primary')
+    let sc=document.createTextNode('Source url')
+    a.appendChild(sc)
+    cardBody.appendChild(cardTitle)
+    cardBody.appendChild(a)
+    card.appendChild(image)
+    card.appendChild(cardBody)
+    document.body.append(card)
+  })
+}
